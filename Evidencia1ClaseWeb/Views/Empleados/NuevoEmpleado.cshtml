@@ -1,0 +1,53 @@
+﻿
+
+@using Evidencia1ClaseWeb.Models
+@model EmpleadoClass
+@{
+    ViewBag.Title = "Nuevo Empleado";
+    
+}
+
+<h2 class="text-center mb-3 animate__animated animate__heartBeat">AGREGAR EMPLEADO</h2>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card my-4 animate__animated animate__fadeInLeft border-secondary rounded">
+            <div class="card-body">
+                @using (Html.BeginForm("NuevoEmpleado", "Empleado", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                {
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.nombreEmpleado, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.nombreEmpleado, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese el nombre completo del empleado</small>
+                        @Html.ValidationMessage("nombreEmpleado", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.apellidoEmpleado, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.apellidoEmpleado, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese el apellido completo del empleado</small>
+                        @Html.ValidationMessage("apellidoEmpleado", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.iDepartamento, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.iDepartamento, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese el departamento</small>
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.fechaIngreso, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.fechaIngreso, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese la fecha de ingreso</small>
+                        @Html.ValidationMessage("fechaIngreso", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.empleadoCelular, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.empleadoCelular, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese telefono del empleado</small>
+                        @Html.ValidationMessage("empleadoCelular", new { @class = "text-danger" })
+                    </div>
+                    <div class="d-grid justify-content-center mb-4 animate__animated animate__zoomInUp">
+                        <input type="submit" class="btn btn-primary" value="Guardar" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@using Evidencia1ClaseWeb.Models
+@model List<ClientesClass>
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> ListaSexo = (List<SelectListItem>)ViewBag.lista;
+}
+
+<div class="container-fluid m-auto">
+    <h2 class="text-center pb-4">TABLA DE CLIENTES</h2>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-10 col-lg-8">
+
+            <table class="table table-responsive table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Estatus</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Correo Electrónico</th>
+                        <th class="text-center">Género</th>
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@if(item.eStatus == 0)
+                            {<p>Inactivo</p>}else{
+                                <p>Activo</p>
+                            }</td>
+                            <td class="text-center">@item.idC_liente</td>
+                            <td class="text-center">@item.nombre_Cliente</td>
+                            <td class="text-center">@item.apellido_Cliente</td>
+                            <td class="text-center">@item.eMail</td>
+                            <td class="text-center">@if (item.Genero == 300)
+                            { <p>Masculino</p> }
+                            else { <p>Femenino</p>}</td>
+                            <td class="text-center">
+                                @Html.ActionLink("Editar", "EditarCliente", new { id = item.idC_liente }, new { @class = "btn btn-warning mx-2" }) |
+                                @Html.ActionLink("Eliminar", "DeleteCliente", new { id = item.idC_liente }, new { @class = "btn btn-danger mx-2", @onclick= "eliminar()|" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="row my-4 justify-content-center">
+        <div class="col-auto">
+            @Html.ActionLink("Agregar nuevo cliente", "NuevoCliente", new { @class = "btn btn-success" })
+            @Html.ActionLink("PDF", "GenerarPDF", "Clientes", null, new { @class = "btn btn-danger mx-2" })
+            @Html.ActionLink("Excel", "GenerarExcel", "Clientes", null, new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+<script>    
+    function eliminar() {
+        if (confirm("¿Desea eliminar el registro?") == 1) {
+            alert("Se elimino el registro correctamente.");
+
+        } else {
+            event.preventDefault();
+        }
+    }
+
+</script>

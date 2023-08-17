@@ -1,0 +1,48 @@
+﻿
+
+@using Evidencia1ClaseWeb.Models
+@model ClientesClass
+@{
+    ViewBag.Title = "Nuevo Cliente";
+    List<SelectListItem> ListaSexo = (List<SelectListItem>)ViewBag.lista;
+}
+
+<h2 class="text-center mb-3 animate__animated animate__heartBeat">AGREGAR CLIENTE</h2>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card my-4 animate__animated animate__fadeInLeft border-secondary rounded">
+            <div class="card-body">
+                @using (Html.BeginForm("NuevoCliente", "Clientes", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                {
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.nombre_Cliente, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.nombre_Cliente, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese el nombre completo del cliente</small>
+                        @Html.ValidationMessage("nombre_Cliente", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.apellido_Cliente, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.apellido_Cliente, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese el apellido completo del cliente</small>
+                        @Html.ValidationMessage("apellido_Cliente", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.EditorFor(p => p.eMail, new { htmlAttributes = new { @class = "form-control animate__animated animate__bounceInRight", required = "required" } })
+                        @Html.LabelFor(p => p.eMail, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Ingrese la dirección de correo electrónico del cliente</small>
+                        @Html.ValidationMessage("eMail", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-floating mb-3">
+                        @Html.DropDownListFor(p => p.Genero, ListaSexo, null, new { @class = "form-control animate__animated animate__bounceInRight", required = "required" })
+                        @Html.LabelFor(p => p.Genero, new { @class = "animate__animated animate__bounceInLeft" })
+                        <small class="form-text text-muted animate__animated animate__fadeInLeft">Seleccione el género del cliente</small>
+                        @Html.ValidationMessage("Genero", new { @class = "text-danger" })
+                    </div>
+                    <div class="d-grid justify-content-center mb-4 animate__animated animate__zoomInUp">
+                        <input type="submit" class="btn btn-primary" value="Guardar" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

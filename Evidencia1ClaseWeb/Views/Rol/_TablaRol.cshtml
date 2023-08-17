@@ -1,0 +1,22 @@
+﻿@using Evidencia1ClaseWeb.Models
+@model List<RolClass>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">@Html.LabelFor(p => Model[0].IDROL)</th>
+            <th scope="col">@Html.LabelFor(p => Model[0].NOMBRE)</th>
+            <th scope="col">@Html.LabelFor(p => Model[0].DESCRIPCION)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.IDROL)</td>
+                <td>@Html.DisplayFor(modelItem => item.NOMBRE)</td>
+                <td>@Html.DisplayFor(modelItem => item.DESCRIPCION)</td>
+            </tr>
+        }
+    </tbody>
+</table>
